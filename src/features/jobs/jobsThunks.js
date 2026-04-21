@@ -56,3 +56,17 @@ export const deleteJob = createAsyncThunk(
         }
     }
 );
+
+export const fetchStats = createAsyncThunk(
+    'jobs/stats',
+    async (_, { rejectWithValue }) => {
+        try{
+            const { data } = await apiService.get(`/jobs/stats`);
+            return data;
+        }catch (error) {
+            return rejectWithValue(
+                error.response?.data?.message || "Failed to fetch job stats"
+            );
+        }
+    }
+)

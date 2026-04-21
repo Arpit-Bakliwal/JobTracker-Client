@@ -4,6 +4,7 @@ import {
     createJob,
     updateJob,
     deleteJob,
+    fetchStats,
 } from './jobsThunks'
 
 const initialState = {
@@ -20,6 +21,8 @@ const initialState = {
         page: 1,
         limit: 10,
     },
+    stats: null,
+    statsLoading: false,
 };
 
 const jobSlice = createSlice({
@@ -90,7 +93,19 @@ const jobSlice = createSlice({
                 state.loading = false
                 state.error = action.payload
             });
-
+        
+        //  Fetch job stats
+        builder
+            .addCase(fetchStats.pending, (state) => {
+                state.statsLoading = true;
+            })
+            .addCase(fetchStats.fulfilled, (state, action) => {
+                state.statsLoading = false;
+                state.stats = action.payload;
+            })
+            .addCase(fetchStats.rejected, (state, action) => {
+                state.statsLoading = false;
+            })
     },
 });
 
