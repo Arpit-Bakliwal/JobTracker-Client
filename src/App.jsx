@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { initializeAuth } from "./features/auth/authThunks";
 import AppRoutes from "./routes/AppRoutes";
+import Toast from "./components/Toast";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,12 @@ const App = () => {
     );
   }
 
-  return <AppRoutes />;
+  return (
+    <>
+      <Toast />
+      <AppRoutes />
+    </>
+  );
 }
 
 export default App;
