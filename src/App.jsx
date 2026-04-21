@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { initializeAuth } from "./features/auth/authThunks";
+import AppRoutes from "./routes/AppRoutes";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -18,12 +19,7 @@ const App = () => {
     );
   }
 
-  return (
-      <div>
-          <h1>App is ready</h1>
-          {/* Routes go here next */}
-      </div>
-  )
+  return <AppRoutes />;
 }
 
 export default App;
