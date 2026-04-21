@@ -1,11 +1,12 @@
 import { useState } from "react"
 
 const STATUS_STYLES = {
-    APPLIED:      'bg-blue-100 text-blue-700',
-    INTERVIEWING: 'bg-yellow-100 text-yellow-700',
-    OFFERED:      'bg-green-100 text-green-700',
-    REJECTED:     'bg-red-100 text-red-700',
-    WITHDRAWN:    'bg-gray-100 text-gray-700',
+    APPLIED:    'bg-blue-100 text-blue-700',
+    SCREENING:  'bg-purple-100 text-purple-700',
+    INTERVIEW:  'bg-yellow-100 text-yellow-700',
+    OFFER:      'bg-green-100 text-green-700',
+    REJECTED:   'bg-red-100 text-red-700',
+    WITHDRAWN:  'bg-gray-100 text-gray-700',
 }
 
 const JobsTableRow = ({ job, onEdit, onDelete }) => {

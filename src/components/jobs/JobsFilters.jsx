@@ -1,4 +1,4 @@
-const JOB_STATUSES = ['APPLIED', 'INTERVIEW', 'OFFER', 'REJECTED', 'WITHDRAWN']
+const JOB_STATUSES = ['APPLIED', 'SCREENING', 'INTERVIEW', 'OFFER', 'REJECTED', 'WITHDRAWN']
 
 const JobsFilters = ({ searchInput, status, onSearchChange, onStatusChange }) => {
     return (

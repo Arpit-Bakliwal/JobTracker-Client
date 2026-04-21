@@ -9,7 +9,7 @@ const JobsTable = ({ jobs, loading, currentPage, totalPages, onPageChange, onEdi
                     <thead>
                         <tr className="bg-gray-50 border-b border-gray-200">
                             <th className="text-left px-4 py-3 font-medium text-gray-600">Company</th>
-                            <th className="text-left px-4 py-3 font-medium text-gray-600">Role</th>
+                            <th className="text-left px-4 py-3 font-medium text-gray-600">Job Title</th>
                             <th className="text-left px-4 py-3 font-medium text-gray-600">Status</th>
                             <th className="text-left px-4 py-3 font-medium text-gray-600">Location</th>
                             <th className="text-left px-4 py-3 font-medium text-gray-600">Applied</th>
