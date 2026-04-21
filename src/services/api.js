@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { store } from "../app/store";
 import { setCredentials, clearCredentials } from '../features/auth/authSlice';
+import { API_BASE_URL } from '../app/config';
 
 // Base axios instance
 const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL,
+    baseURL: API_BASE_URL,
     withCredentials: true, // Send httpOnly cookie automatically
 });
 
@@ -61,7 +62,7 @@ api.interceptors.response.use(
             try {
                 // Call refresh endpoint - httponly cookie sent automatically
                 const { data } = await axios.post(
-                    `${import.meta.env.VITE_API_URL}/auth/refresh`,
+                    `${API_BASE_URL}/auth/refresh`,
                     {},
                     { withCredentials: true }
                 );
@@ -94,5 +95,24 @@ api.interceptors.response.use(
         return Promise.reject(error);
     }
 );
+
+const apiService = {
+    get: (url, params = {}) =>
+        api.get(url, { params }).then((res) => res.data),
+
+    post: (url, body = {}) =>
+        api.post(url, body).then((res) => res.data),
+
+    put: (url, body = {}) =>
+        api.put(url, body).then((res) => res.data),
+
+    patch: (url, body = {}) =>
+        api.patch(url, body).then((res) => res.data),
+
+    delete: (url) =>
+        api.delete(url).then((res) => res.data),
+}
+
+export { apiService };
 
 export default api;

@@ -4,6 +4,7 @@ const initialState = {
     user: null,
     accessToken: null,
     isAuthenticated: false,
+    isInitialized: false, // has app checked session yet
     loading: false,
     error: null,
 };
@@ -22,9 +23,12 @@ const authSlice = createSlice({
             state.accessToken = null;
             state.isAuthenticated = false;
         },
+        setInitialized: (state) => {
+            state.isInitialized = true // called after refresh attempt - success or failuer
+        }
     },
     extraReducers: () => {}, // thunks go here later
 });
 
-export const { setCredentials, clearCredentials } = authSlice.actions;
+export const { setCredentials, clearCredentials, setInitialized } = authSlice.actions;
 export default authSlice.reducer;
