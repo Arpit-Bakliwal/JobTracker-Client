@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ProtectedRoute, AdminRoute, GuestRoute } from "./ProtectedRouts";
+import Layout from '../components/Layout'
 
 import Login from '../pages/Login'
 import Register from '../pages/Register'
@@ -23,14 +24,17 @@ const AppRoutes = () => {
 
                 {/* Protected — must be logged in */}
                 <Route element={<ProtectedRoute />}>
-                    <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path="/jobs" element={<Jobs />} />
+                    <Route element={<Layout />}>
+                        <Route path="/dashboard" element={<Dashboard />} />
+                        <Route path="/jobs" element={<Jobs />} />
+                    </Route>
+
+                    {/* Admin only — must be logged in + ADMIN role */}
+                    <Route element={<AdminRoute />}>
+                        <Route path="/admin" element={<AdminPanel />} />
+                    </Route>
                 </Route>
 
-                {/* Admin only — must be logged in + ADMIN role */}
-                <Route element={<AdminRoute />}>
-                    <Route path="/admin" element={<AdminPanel />} />
-                </Route>
 
                 {/* 404 */}
                 <Route path="*" element={<NotFound />} />
