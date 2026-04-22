@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { NavLink, useNavigate, Outlet } from "react-router-dom";
+import NotificationBell from "./shared/NotificationBell";
 
 import useAuth from '../hooks/useAuth'
 import useUI from '../hooks/useUI'
@@ -119,9 +120,8 @@ const Layout = () => {
                         <span className="text-xl">☰</span>
                     </button>
 
-                    {/* Page title area — pages can use this via context if needed */}
                     <div className="flex-1" />
-
+                    <NotificationBell />
                     {/* Role badge */}
                     <span className={`
                         text-xs font-semibold px-2.5 py-1 rounded-full
