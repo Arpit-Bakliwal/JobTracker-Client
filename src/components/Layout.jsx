@@ -10,6 +10,7 @@ const getNavLinks = (role) => {
     const links = [
         { to: '/dashboard', label: 'Dashboard', icon: '📊' },
         { to: '/jobs', label: 'Jobs', icon: '💼' },
+        { to: '/ai', label: 'AI Tools',   icon: '🤖' },
     ]
 
     if (role === 'ADMIN') {
