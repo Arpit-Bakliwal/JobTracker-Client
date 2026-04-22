@@ -39,6 +39,9 @@ export const SocketProvider = ({ children }) => {
         const socket = io(SOCKET_URL, {
                 auth: {token: accessToken},
                 transports: ['websockets', 'polling'],
+                reconnectionAttempts: 5,      // stop after 5 tries
+                reconnectionDelay: 2000,      // wait 2s between attempts
+                timeout: 10000,               // connection timeout
             }
         );
 
@@ -56,6 +59,17 @@ export const SocketProvider = ({ children }) => {
         socket.on("connect_error", (error) => {
             console.error('Socket connection error:', error.message)
             setIsConnected(false)
+            // If auth fails — don't keep retrying, token is invalid
+            if (error.message === 'Authentication failed' ||
+                error.message === 'Authentication required') {
+                socket.disconnect()
+            }
+        });
+
+        // When max reconnection attempts reached — stop trying
+        socket.on('reconnect_failed', () => {
+            console.log('Socket reconnection failed — giving up');
+            setIsConnected(false);
         });
 
         // App Events
