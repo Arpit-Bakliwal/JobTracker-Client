@@ -25,7 +25,7 @@ const JobModal = ({ isOpen, onClose, onSubmit, job = null }) => {
         if (job) {
             setFormData({
                 company: job.company || '',
-                role: job.title || '',
+                title: job.title || '',
                 status: job.status || 'APPLIED',
                 jobUrl: job.jobUrl || '',
                 location: job.location || '',
@@ -46,11 +46,20 @@ const JobModal = ({ isOpen, onClose, onSubmit, job = null }) => {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        setIsLoading(true);
-        await onSubmit(formData);
-        setIsLoading(false);
-    };
+    e.preventDefault()
+
+    // Convert date string to ISO datetime before sending
+    const payload = {
+        ...formData,
+        appliedAt: formData.appliedAt
+            ? new Date(formData.appliedAt).toISOString()
+            : undefined,
+    }
+
+    setIsLoading(true)
+    await onSubmit(payload)
+    setIsLoading(false)
+}
 
     // Close on backdrop click
     const handleBackdropClick = (e) => {
@@ -103,10 +112,10 @@ const JobModal = ({ isOpen, onClose, onSubmit, job = null }) => {
                                 Role <span className="text-red-500">*</span>
                             </label>
                             <input
-                                name="role"
+                                name="title"
                                 type="text"
                                 required
-                                value={formData.role}
+                                value={formData.title}
                                 onChange={handleChange}
                                 placeholder="Designation"
                                 className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
