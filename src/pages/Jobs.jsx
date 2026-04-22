@@ -87,7 +87,7 @@ const Jobs = () => {
 
     return (
         <div className="space-y-5">
-            <JobsHeader onAddClick={openAddModal} />
+            <JobsHeader onAddClick={openAddModal} onImportSuccess={() => handleFetchJobs(filters)} />
 
             <JobsFilters
                 searchInput={searchInput}
