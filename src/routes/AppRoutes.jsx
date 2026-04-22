@@ -27,12 +27,12 @@ const AppRoutes = () => {
                     <Route element={<Layout />}>
                         <Route path="/dashboard" element={<Dashboard />} />
                         <Route path="/jobs" element={<Jobs />} />
+                        {/* Admin only — must be logged in + ADMIN role */}
+                        <Route element={<AdminRoute />}>
+                            <Route path="/admin" element={<AdminPanel />} />
+                        </Route>
                     </Route>
 
-                    {/* Admin only — must be logged in + ADMIN role */}
-                    <Route element={<AdminRoute />}>
-                        <Route path="/admin" element={<AdminPanel />} />
-                    </Route>
                 </Route>
 
 
