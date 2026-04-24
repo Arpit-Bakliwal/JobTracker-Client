@@ -38,7 +38,7 @@ export const SocketProvider = ({ children }) => {
         // Create Socket Connection
         const socket = io(SOCKET_URL, {
                 auth: {token: accessToken},
-                transports: ['websockets', 'polling'],
+                transports: ['websocket', 'polling'],
                 reconnectionAttempts: 5,      // stop after 5 tries
                 reconnectionDelay: 2000,      // wait 2s between attempts
                 timeout: 10000,               // connection timeout
