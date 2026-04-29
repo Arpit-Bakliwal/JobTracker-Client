@@ -9,6 +9,6 @@ export default defineConfig({
   ],
   server: {
     port: 3005, // Default port 5173
-    strictPort: true // Fail if port is token, Don't auto switch
+    strictPort: true // Fail if port is taken, Don't auto switch
   }
 })
